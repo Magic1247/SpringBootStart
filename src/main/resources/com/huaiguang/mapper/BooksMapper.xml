@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaiguang.mapper.BooksMapper">
+
+    <select id="getAll" resultType="com.huaiguang.pojo.Books">
+        select *
+        from books;
+    </select>
+
+    <select id="getBookById" resultType="com.huaiguang.pojo.Books" parameterType="int">
+        select *
+        from books
+        where bookID = #{bookID};
+    </select>
+
+    <insert id="addBooks" parameterType="com.huaiguang.pojo.Books">
+        insert into books(bookName, bookCounts, detail)
+        values (#{bookName}, #{bookCounts}, #{detail});
+    </insert>
+
+    <update id="updateBooks" parameterType="com.huaiguang.pojo.Books">
+        update books
+        set bookName=#{bookName},
+            bookCounts=#{bookCounts},
+            detail=#{detail}
+        where bookID = #{bookID};
+    </update>
+
+    <delete id="deleteBooksById" parameterType="int">
+        delete
+        from books
+        where bookID = #{bookID};
+    </delete>
+</mapper>
